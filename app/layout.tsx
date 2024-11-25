@@ -1,3 +1,8 @@
+import React from "react";
+import {ClerkProvider} from "@clerk/nextjs";
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import type {Metadata} from "next";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -24,12 +29,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-        <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-        {children}
-        </body>
-        </html>
+        <ClerkProvider>
+            <html lang="en">
+            <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+            {children}
+            <ToastContainer position="bottom-right" theme="dark"/>
+            </body>
+            </html>
+        </ClerkProvider>
     );
 }
